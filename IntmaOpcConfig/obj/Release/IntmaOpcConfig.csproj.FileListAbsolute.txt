@@ -1,0 +1,6 @@
+C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\bin\Release\IntmaOpcConfig.dll
+C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\bin\Release\IntmaOpcConfig.pdb
+C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\IntmaOpcConfig.csprojAssemblyReference.cache
+C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\IntmaOpcConfig.csproj.CoreCompileInputs.cache
+C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\IntmaOpcConfig.dll
+C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\IntmaOpcConfig.pdb

@@ -1,0 +1,165 @@
+﻿<Window x:Class="Intma.OpcService.Config.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Intma.OpcService.Config"
+        mc:Ignorable="d"
+        Title="Конфигуратор" Height="450" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition  Height="30"/>
+            <RowDefinition />
+            <RowDefinition  Height="30"/>
+        </Grid.RowDefinitions>
+        <!-- Upper-->
+            <Grid Background="#FFF0F0F0"  Grid.Row="0"  HorizontalAlignment="Stretch" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"  Orientation="Horizontal" HorizontalAlignment="Left" Grid.ColumnSpan="2" Margin="0,0,-0.4,0.4" Width="794">
+                <TextBlock  Margin="20 0 0 0" VerticalAlignment="Center">Сервер:</TextBlock>
+                <TextBox  Margin="10 0 20 0" Width="100" Height="20"  VerticalAlignment="Center" Text="{Binding Server}"></TextBox>
+                <Button  Width="80" Height="23" Command="{Binding AddNewCommand}">
+                    <TextBlock FontSize="8">Добавить группу</TextBlock>
+                </Button>
+                <Button  Width="80" Height="23" Margin="10 0 0 0" Command="{Binding ImportCSVCommand}" ToolTip="Импорт из CSV (Первый столбец)">
+                    <TextBlock>Импорт</TextBlock>
+                </Button>
+                <Button  Width="80" Height="23" Margin="10 0 0 0" Command="{Binding RemoveAllCommand}">
+                    <TextBlock>Отчистить</TextBlock>
+                </Button>
+                
+            </StackPanel>
+        </Grid>
+        <!-- Content-->
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="4*" />
+            </Grid.ColumnDefinitions>
+
+            <!--Tree-->
+            <TreeView Grid.Column="0" PreviewMouseRightButtonDown="OnPreviewMouseRightButtonDown"  x:Name="treeView1"  ItemsSource="{Binding Groups}" Background="#FFE4E4E4" FontSize="18" FontFamily="Century Gothic " Foreground="{x:Null}" BorderBrush="#FFE4E4E4">
+                <TreeView.Resources>
+                    <ContextMenu x:Key="RegistersGroupMenu"  StaysOpen="true" ItemsSource="{Binding RelativeSource={RelativeSource AncestorType={x:Type TreeView}},Path=DataContext.Actions}" >
+                        <ContextMenu.ItemContainerStyle>
+                            <Style TargetType="{x:Type MenuItem}">
+                                <Setter Property="Command" Value="{Binding Action}"/>
+                                <Setter Property="Header" Value="{Binding Name}"/>
+                            </Style>
+                        </ContextMenu.ItemContainerStyle>
+                        <!--<ContextMenu.ItemTemplate>
+                            <DataTemplate DataType="MenuItem">
+                                <MenuItem Header="{Binding Name}" Command="{Binding Action}"></MenuItem>
+                            </DataTemplate>
+                        </ContextMenu.ItemTemplate>-->
+                    </ContextMenu>
+                    <LinearGradientBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFD9F4FF" Offset="0"/>
+                        <GradientStop Color="#FF9BDDFB" Offset="1"/>
+                    </LinearGradientBrush>
+                    <LinearGradientBrush x:Key="{x:Static SystemColors.ControlBrushKey}" EndPoint="0,1" StartPoint="0,0">
+                        <GradientStop Color="#FFEEEDED" Offset="0"/>
+                        <GradientStop Color="#FFDDDDDD" Offset="1"/>
+                    </LinearGradientBrush>
+                    <SolidColorBrush x:Key="{x:Static SystemColors.HighlightTextBrushKey}" Color="Black" />
+                    <SolidColorBrush x:Key="{x:Static SystemColors.ControlTextBrushKey}" Color="Black" />
+                </TreeView.Resources>
+                <TreeView.ItemContainerStyle>
+                    <Style TargetType="{x:Type TreeViewItem}">
+                        <Setter Property="ContextMenu" Value="{StaticResource RegistersGroupMenu}"/>
+                        <Setter Property="BorderThickness" Value="1.5"/>
+                        <Setter Property="IsSelected" Value="{Binding IsSelected}" />
+                        <Style.Resources>
+                            <Style TargetType="Border">
+                                <Setter Property="CornerRadius" Value="2"/>
+                            </Style>
+                        </Style.Resources>
+                    </Style>
+                    
+                </TreeView.ItemContainerStyle>
+
+                <TreeView.ItemTemplate >
+                    <HierarchicalDataTemplate>
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="{Binding Name, Mode=TwoWay}" />
+                        </StackPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
+            </TreeView>
+            <!-- Content-->
+            <Grid  DataContext="{Binding SelectedGroup}" Grid.Column="1" Name="tagsGrid">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <DataGrid Grid.Row="1" ItemsSource="{Binding Path=Tags, Mode=TwoWay}" SelectedItem="{Binding SelectedTag}" ScrollViewer.CanContentScroll="False" VerticalGridLinesBrush="LightGray" HorizontalGridLinesBrush="LightGray" BorderBrush="LightGray"  AutoGenerateColumns="False" IsReadOnly="True" >
+                    <DataGrid.ContextMenu>
+                        <ContextMenu StaysOpen="true" ItemsSource="{Binding Actions}" >
+                            <ContextMenu.ItemContainerStyle>
+                                <Style TargetType="{x:Type MenuItem}">
+                                    <Setter Property="Command" Value="{Binding Action}"/>
+                                    <Setter Property="Header" Value="{Binding Name}"/>
+                                </Style>
+                            </ContextMenu.ItemContainerStyle>
+                            <!--<ContextMenu.ItemTemplate>
+                                <DataTemplate DataType="MenuItem">
+                                    <MenuItem Header="{Binding Name}" Command="{Binding Action}"></MenuItem>
+                                </DataTemplate>
+                            </ContextMenu.ItemTemplate>-->
+                        </ContextMenu>
+                    </DataGrid.ContextMenu>
+                    <DataGrid.Columns>
+                    <DataGridTemplateColumn Header="Тег"  Width="2*">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                    <TextBox Text="{Binding ID, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    
+                        <DataGridTemplateColumn Header="SvgName"  Width="2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding SVGName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTemplateColumn Header="TagName"  Width="2*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBox Text="{Binding TagName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" BorderThickness="0" />
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+                    
+                        <DataGridTemplateColumn >
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button IsEnabled="True" Content="X"  BorderThickness="0"  Command="{Binding RelativeSource={RelativeSource AncestorType={x:Type DataGrid}},
+                                              Path=DataContext.DeleteCommand}"
+                            CommandParameter="{Binding}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
+            </Grid>
+        </Grid>
+        <!-- Footer-->
+        <Grid Background="#FFF0F0F0"  Grid.Row="2"  HorizontalAlignment="Stretch" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0"  Orientation="Horizontal" HorizontalAlignment="Left">
+                <Button  Name="Back" Width="80" Command="{Binding SaveCommand}">
+                    <TextBlock>Применить</TextBlock>
+                </Button>
+                <TextBlock Name="tbCountEntries" Margin="20 0 0 0" VerticalAlignment="Center"></TextBlock>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
