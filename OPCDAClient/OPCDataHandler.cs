@@ -16,7 +16,7 @@ namespace Intma.OPCDAClient
 
         static int _counter = 1; 
         OpcDaBrowserAuto _browser;
-        private int _scanPeriodFromMilliseconds = 1000;
+        private int _scanPeriodFromMilliseconds;
         public int ScanPeriodFromMilliseconds { get => _scanPeriodFromMilliseconds; set { _scanPeriodFromMilliseconds = value; _group.UpdateRate = TimeSpan.FromMilliseconds(value); } }
         public Dictionary<string, OPCObject> OPClist { get; set; }
 
@@ -40,9 +40,10 @@ namespace Intma.OPCDAClient
             _group = _server.AddGroup(servername + _counter++);
             _group.IsActive = true;
 
-            ScanPeriodFromMilliseconds = 100;
-
             _browser = new OpcDaBrowserAuto(_server);
+
+            _group.ValuesChanged += OnGroupValuesChanged;
+            ScanPeriodFromMilliseconds = 3000;
         }
         /// <summary>
         /// Совершает подписку на заданные объекты. Возвращает IEnumerable<IOpcUpdatable>, которые будет обновлять
@@ -75,32 +76,50 @@ namespace Intma.OPCDAClient
             List<OpcDaItemDefinition> l = new List<OpcDaItemDefinition>();
             foreach (var tag in tags)
             {
-                    l.Add(new OpcDaItemDefinition
-                    {
-                        ItemId = tag.ID,
-                        IsActive = true
-                    });
-                    var ob = new OPCObject() { ID = tag.ID, SVGName = tag.SVGName, TagName = tag.TagName, Group = tag.Group };
-                    OPClist.Add(tag.ID, ob);
+                AddItem(tag);
+                //if (OPClist.Any(a => a.Value.ID == tag.ID))
+                //{
+                //    if(OPClist[tag.ID].Groups[tag.Group] == null)
+                //        OPClist[tag.ID].Groups.Add(tag.Group, tag.Group);
+
+                //    continue;
+                //}
+
+                //l.Add(new OpcDaItemDefinition
+                //{
+                //    ItemId = tag.ID,
+                //    IsActive = true
+                //});
+                //var ob = new OPCObject() { ID = tag.ID, SVGName = tag.SVGName, TagName = tag.TagName };
+                //ob.Groups.Add(tag.Group, tag.Group);
+                //OPClist.Add(tag.ID, ob);
             }
 
-            OpcDaItemResult[] results = _group.AddItems(l);
+            //OpcDaItemResult[] results = _group.AddItems(l);
         }
 
-        public OPCObject AddItem(string id)
+        public void AddItem(Tag tag)
         {
             List<OpcDaItemDefinition> l = new List<OpcDaItemDefinition>();
+            OPCObject ob;
 
-            l.Add(new OpcDaItemDefinition
+            if (OPClist.Any(a => a.Value.ID == tag.ID))
             {
-                ItemId = id,
-                IsActive = true
-            });
-            var ob = new OPCObject() { ID = id };
-            OPClist.Add(id, ob);
+                if (!OPClist[tag.ID].Groups.Any(a => a == tag.Group))
+                    OPClist[tag.ID].Groups.Add(tag.Group);
+            }
+            else { 
+                l.Add(new OpcDaItemDefinition
+                {
+                    ItemId = tag.ID,
+                    IsActive = true
+                });
+                ob = new OPCObject() { ID = tag.ID, TagName = tag.TagName };
+                ob.Groups.Add(tag.Group);
+                OPClist.Add(tag.ID, ob);
 
-            OpcDaItemResult[] results = _group.AddItems(l);
-            return ob;
+                OpcDaItemResult[] results = _group.AddItems(l);
+            }
         }
 
         /// <summary>
@@ -119,19 +138,27 @@ namespace Intma.OPCDAClient
         {
             _group.RefreshAsync(OpcDaDataSource.Device);
         }
-        //void OnGroupValuesChanged(object sender, OpcDaItemValuesChangedEventArgs args)
-        //{
-        //    foreach (OpcDaItemValue value in args.Values)
-        //    {
-        //        OPClist[value.Item.ItemId].OPCUpdate(value.Quality, value.Value, value.Timestamp.ToString());
-        //    }
-        //}
 
-        public void WriteValue(OPCObject[] opcObjects, object[] values)
+        void OnGroupValuesChanged(object sender, OpcDaItemValuesChangedEventArgs args)
         {
-            var group1 = _group;
-            var sel = (from items in group1.Items join opcOb in opcObjects on items.ItemId equals opcOb.ID select items).Distinct().ToList();
-            HRESULT[] results = _group.Write(sel, values);
+            foreach (OpcDaItemValue value in args.Values)
+            {
+                OPClist[value.Item.ItemId].OPCUpdate(value.Quality, value.Value, value.Timestamp.ToString());
+            }
+        }
+
+        public void WriteValue(OPCObject[] opcObjects)
+        {
+            // var sel = (from items in group1.Items join opcOb in opcObjects on items.ItemId equals opcOb.ID select items).Distinct().ToList();
+            // var sel = _group.Items.Where(a => opcObjects.Any(b => b.ID == a.ItemId)).ToList();
+            List<OpcDaItem> sel = new List<OpcDaItem>();
+            List<object> values = new List<object>();
+            foreach(var opcObject in opcObjects)
+            {
+                sel.Add(_group.Items.FirstOrDefault(a => a.ItemId == opcObject.ID));
+                values.Add(opcObject.Value);
+            }
+            HRESULT[] results = _group.Write(sel, values.ToArray());
         }
 
         public void WriteValue(OPCObject opcObject, object value)
@@ -182,7 +209,7 @@ namespace Intma.OPCDAClient
 
         public void Dispose()
         {
-            _group.RemoveItems(_group.Items);
+            //_group.RemoveItems(_group.Items);
 
             _server.RemoveGroup(_group);
             _server.Dispose();

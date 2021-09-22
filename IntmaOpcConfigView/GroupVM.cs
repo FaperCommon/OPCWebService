@@ -27,8 +27,6 @@ namespace Intma.OpcService.Config
 
         public GroupVM(Group group)
         {
-            Actions = new ObservableCollection<ContextAction>() {  new ContextAction() { Name = "Добавить тэг", Action = AddNewCommand } };
-
             _group = group;
             Tags = new ObservableCollection<TagVM>();
             foreach (var tag in _group.Tags)
@@ -39,15 +37,13 @@ namespace Intma.OpcService.Config
 
         public GroupVM()
         {
-            Actions = new ObservableCollection<ContextAction>() { new ContextAction() { Name = "Добавить тэг", Action = AddNewCommand } };
-
             _group = new Group();
             Tags = new ObservableCollection<TagVM>();
         }
 
         private void DeleteSelected()
         {
-            _group.Tags.Remove(_group.Tags.First(a => a.ID == SelectedTag.ID));
+            _group.Tags.Remove(_group.Tags.First(a => (object)a.ID == SelectedTag.ID));
             Tags.Remove(SelectedTag);
         }
 

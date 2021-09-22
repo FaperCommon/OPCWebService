@@ -1,11 +1,10 @@
-﻿using Intma.OPCDAClient;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Web;
-using System.Text;
-using System.Threading.Tasks;
+
+using Intma.OPCDAClient;
 
 namespace Intma.OpcServiceWeb
 {
@@ -13,20 +12,34 @@ namespace Intma.OpcServiceWeb
     public interface IOpcService
     {
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetAllValues")]
+        [WebInvoke(Method = "GET", UriTemplate = "GetAllValues")]
         List<OPCObject> GetAllValues();
+
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetValuesByTags/{tags}")]
+        [WebInvoke(Method = "GET", UriTemplate = "GetValuesByTags/{tags}")]
         List<OPCObject> GetValuesByTags(string tags);
+
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetValuesByIDS/{ids}")]
+        [WebInvoke(Method = "GET", UriTemplate = "GetValuesByIDS/{ids}")]
         List<OPCObject> GetValuesByIDS(string ids);
+
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetValuesByGroup/{group}")]
+        [WebInvoke(Method = "GET", UriTemplate = "GetValuesByGroup/{group}")]
         List<OPCObject> GetValuesByGroup(string group);
+
         [OperationContract]
-        [WebGet(ResponseFormat = WebMessageFormat.Json, UriTemplate = "/GetEx")]
-        string GetEx();
+        [WebInvoke(Method = "GET",
+            BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "ReConfig")]
+        string ReConfig();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST",
+            RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, BodyStyle = WebMessageBodyStyle.Wrapped, UriTemplate = "Update")]
+        void Update(List<OPCObject> items);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", UriTemplate = "UpdateValues/{items}")]
+        OPCObject UpdateValues(string items);
     }
 }
 

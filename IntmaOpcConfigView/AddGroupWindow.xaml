@@ -5,14 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Intma.OpcService.Config"
         mc:Ignorable="d"
-        Title="Создание/Редактирование группы" Height="210" Width="400">
+         Height="180" Width="400">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
-        <Label Grid.Row="0" Content="Имя группы:" Margin="10 0 0 0" Height="auto" Width="auto" VerticalAlignment="Top" HorizontalAlignment="Left"/>
-        <TextBox  Grid.Row="0" Text="{Binding Name, Mode=TwoWay}" Name="tbName" Height="25" Width="auto" Margin="10 30 10 10" VerticalAlignment="Bottom"/>
+        <Label Grid.Row="0" Content="{Binding Header}" Margin="10 0 0 0" Height="auto" Width="auto" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <TextBox  Grid.Row="0" Text="{Binding Input}" Height="25" Width="auto" Margin="10 30 10 10" VerticalAlignment="Bottom"/>
 
         <Separator Grid.Row="1" Margin="0 -28 0 0" BorderBrush="DarkGray" ></Separator>
         <Separator Grid.Row="1" Margin="5,-20,5,0" BorderBrush="LightSteelBlue" ></Separator>
@@ -20,7 +20,7 @@
         <Button Grid.Row="1" Name="btnAccept" Content ="Сохранить" Height="auto" Width="auto" VerticalAlignment="Bottom" 
                 HorizontalAlignment="Left" Margin="30 30 0 15" Padding="6 3 6 3" 
                 Click="ButtonAdd_Click" FontSize="14"/>
-        <Button Grid.Row="1" Content ="Отмена" Height="auto" Width="auto" VerticalAlignment="Bottom" 
+        <Button Grid.Row="1" IsCancel="true" Content ="Отмена" Height="auto" Width="auto" VerticalAlignment="Bottom" 
                 HorizontalAlignment="Left" Margin="118 30 0 15" Padding="6 3 6 3" FontSize="14"
                 Click="ButtonCancel_Click"/>
     </Grid>

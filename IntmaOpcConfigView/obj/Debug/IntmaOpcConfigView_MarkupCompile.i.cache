@@ -4,16 +4,16 @@
 winexe
 C#
 .cs
-C:\Users\INTMA-KA\source\repos\OPCWebService\IntmaOPCServiceConfig\obj\Debug\
+C:\TEMP\OPCWebService2\IntmaOpcConfigView\obj\Debug\
 Intma.OpcService.Config
 none
 false
 DEBUG;TRACE
-C:\Users\INTMA-KA\source\repos\OPCWebService\IntmaOPCServiceConfig\App.xaml
+C:\TEMP\OPCWebService2\IntmaOpcConfigView\App.xaml
 2656292012
 
-16-21135239
-14-1571428531
+13-251786928
+151260609699
 AddGroupWindow.xaml;MainWindow.xaml;
 
 True

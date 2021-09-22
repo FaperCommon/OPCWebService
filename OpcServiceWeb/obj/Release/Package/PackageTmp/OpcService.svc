@@ -1,1 +1,1 @@
-﻿<%@ ServiceHost Language="C#" Debug="true" Service="OpcServiceWeb.OpcService" CodeBehind="OpcService.svc.cs" %>
+﻿<%@ ServiceHost Language="C#" Debug="true" Service="Intma.OpcServiceWeb.OpcService" CodeBehind="OpcService.svc.cs" %>

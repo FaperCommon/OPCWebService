@@ -13,7 +13,6 @@ namespace Intma.OpcService.Config
         readonly Tag _tag;
 
         public string ID { get => _tag.ID; set { _tag.ID = value; } }
-        public string SVGName { get => _tag.SVGName; set => _tag.SVGName = value; }
         public string TagName { get => _tag.TagName; set => _tag.TagName = value; }
 
         public TagVM(Tag tag)

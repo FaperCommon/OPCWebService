@@ -13,3 +13,15 @@ C:\Users\INTMA-KA\source\repos\OPCWebService\IntmaOpcConfig\bin\Debug\IntmaOpcCo
 C:\Users\INTMA-KA\source\repos\OPCWebService\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.csproj.CoreCompileInputs.cache
 C:\Users\INTMA-KA\source\repos\OPCWebService\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.dll
 C:\Users\INTMA-KA\source\repos\OPCWebService\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService\IntmaOpcConfig\bin\Debug\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService\IntmaOpcConfig\bin\Debug\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.csproj.CoreCompileInputs.cache
+C:\TEMP\OPCWebService\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService2\IntmaOpcConfig\bin\Debug\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService2\IntmaOpcConfig\bin\Debug\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService2\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.csproj.CoreCompileInputs.cache
+C:\TEMP\OPCWebService2\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService2\IntmaOpcConfig\obj\Debug\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService2\Build\Config\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService2\Build\Config\IntmaOpcConfig.pdb

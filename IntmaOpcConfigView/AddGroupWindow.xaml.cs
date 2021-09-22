@@ -1,50 +1,46 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
-using Intma.OpcService.Config;
 
 namespace Intma.OpcService.Config
 {
     /// <summary>
     /// Логика взаимодействия для AddGroupWindow.xaml
     /// </summary>
-    public partial class AddGroupWindow : Window
+    public partial class AddGroupWindow : Window, INotifyPropertyChanged
     {
-        public Group Group { get; }
+        private string _header;
+        private string _input;
+
+        public string Input { get => _input; set { _input = value; OnPropertyChanged(); } }
+        public string Header { get => _header; set { _header = value; OnPropertyChanged(); } }
         public bool IsAdded { get; set; }
-        public AddGroupWindow()
+        public AddGroupWindow(string title, string header)
         {
             InitializeComponent();
-            Group = new Group();
-            DataContext = Group;
+            Title = title;
+            Header = header;
+            DataContext = this;
         }
 
-        public AddGroupWindow(GroupVM group)
+        public AddGroupWindow(string title, string header, string input)
         {
             InitializeComponent();
-            Group = new Group() { Name = group.Name };
-            DataContext = Group;
+            Title = title;
+            Header = header;
+            Input = input;
+            DataContext = this;
         }
 
         private void ButtonAdd_Click(object sender, RoutedEventArgs e)
         {
-            if (String.IsNullOrEmpty(Group.Name))
+            if (String.IsNullOrEmpty(Input))
             {
-                MessageBox.Show("Поле с именем должно быть заполнено!");
+                MessageBox.Show("Поле ввода не может быть пустым!");
                 return;
             }
 
-            MessageBox.Show("Запись успешно сохранена!");
             IsAdded = true;
             Close();
         }
@@ -53,5 +49,13 @@ namespace Intma.OpcService.Config
         {
             Close();
         }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(prop));
+        }
+
     }
 }

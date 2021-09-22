@@ -4,3 +4,15 @@ C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\
 C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\IntmaOpcConfig.csproj.CoreCompileInputs.cache
 C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\IntmaOpcConfig.dll
 C:\Users\INTMA-KA\source\repos\IntmaOPCServiceConfig\IntmaOpcConfig\obj\Release\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService\IntmaOpcConfig\bin\Release\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService\IntmaOpcConfig\bin\Release\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService\IntmaOpcConfig\obj\Release\IntmaOpcConfig.csprojAssemblyReference.cache
+C:\TEMP\OPCWebService\IntmaOpcConfig\obj\Release\IntmaOpcConfig.csproj.CoreCompileInputs.cache
+C:\TEMP\OPCWebService\IntmaOpcConfig\obj\Release\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService\IntmaOpcConfig\obj\Release\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService2\IntmaOpcConfig\bin\Release\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService2\IntmaOpcConfig\bin\Release\IntmaOpcConfig.pdb
+C:\TEMP\OPCWebService2\IntmaOpcConfig\obj\Release\IntmaOpcConfig.csprojAssemblyReference.cache
+C:\TEMP\OPCWebService2\IntmaOpcConfig\obj\Release\IntmaOpcConfig.csproj.CoreCompileInputs.cache
+C:\TEMP\OPCWebService2\IntmaOpcConfig\obj\Release\IntmaOpcConfig.dll
+C:\TEMP\OPCWebService2\IntmaOpcConfig\obj\Release\IntmaOpcConfig.pdb

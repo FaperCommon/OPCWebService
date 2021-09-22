@@ -15,7 +15,8 @@ namespace Intma.OpcService.Config
         {
             InitializeComponent();
             _config = new ConfigVM();
-            DataContext = _config;
+            DataContext = _config; 
+            EventLogInit();
         }
 
         private void OnPreviewMouseRightButtonDown(object sender, MouseButtonEventArgs e)
@@ -35,6 +36,19 @@ namespace Intma.OpcService.Config
                 source = VisualTreeHelper.GetParent(source);
 
             return source as TreeViewItem;
+        }
+
+        private void EventLogInit()
+        {
+            try
+            {
+                if (!System.Diagnostics.EventLog.SourceExists("IntmaOpcServiceWeb"))
+                    System.Diagnostics.EventLog.CreateEventSource("IntmaOpcServiceWeb", "IntmaOpcServiceWeb_EventLog");
+            }
+            catch
+            {
+                MessageBox.Show("Не удалось зарегистрировать лог");
+            }
         }
 
     }

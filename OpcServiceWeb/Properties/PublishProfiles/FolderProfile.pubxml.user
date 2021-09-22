@@ -19,14 +19,32 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/Common.Logging.pdb">
       <publishTime>09/07/2015 21:08:02</publishTime>
     </File>
+    <File Include="bin/IntmaOpcConfig.dll">
+      <publishTime>09/21/2021 12:47:52</publishTime>
+    </File>
+    <File Include="bin/IntmaOpcConfig.pdb">
+      <publishTime>09/21/2021 12:47:52</publishTime>
+    </File>
+    <File Include="bin/Microsoft.Bcl.AsyncInterfaces.dll">
+      <publishTime>10/19/2020 18:40:36</publishTime>
+    </File>
     <File Include="bin/Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll">
       <publishTime>05/09/2018 16:10:50</publishTime>
     </File>
+    <File Include="bin/OPCDAClient.dll">
+      <publishTime>09/21/2021 12:47:54</publishTime>
+    </File>
+    <File Include="bin/OPCDAClient.dll.config">
+      <publishTime>06/08/2021 11:34:00</publishTime>
+    </File>
+    <File Include="bin/OPCDAClient.pdb">
+      <publishTime>09/21/2021 12:47:54</publishTime>
+    </File>
     <File Include="bin/OpcServiceWeb.dll">
-      <publishTime>04/29/2021 09:01:57</publishTime>
+      <publishTime>09/21/2021 12:47:55</publishTime>
     </File>
     <File Include="bin/OpcServiceWeb.pdb">
-      <publishTime>04/29/2021 09:01:57</publishTime>
+      <publishTime>09/21/2021 12:47:55</publishTime>
     </File>
     <File Include="bin/roslyn/csc.exe">
       <publishTime>08/08/2018 05:38:48</publishTime>
@@ -175,14 +193,38 @@ https://go.microsoft.com/fwlink/?LinkID=208121.
     <File Include="bin/roslyn/VBCSCompiler.exe.config">
       <publishTime>08/08/2018 12:18:16</publishTime>
     </File>
+    <File Include="bin/System.Buffers.dll">
+      <publishTime>02/19/2020 10:05:18</publishTime>
+    </File>
+    <File Include="bin/System.Memory.dll">
+      <publishTime>02/19/2020 10:05:18</publishTime>
+    </File>
+    <File Include="bin/System.Numerics.Vectors.dll">
+      <publishTime>05/15/2018 13:29:44</publishTime>
+    </File>
+    <File Include="bin/System.Runtime.CompilerServices.Unsafe.dll">
+      <publishTime>10/19/2020 18:46:30</publishTime>
+    </File>
+    <File Include="bin/System.Text.Encodings.Web.dll">
+      <publishTime>02/16/2021 21:53:20</publishTime>
+    </File>
+    <File Include="bin/System.Text.Json.dll">
+      <publishTime>03/16/2021 22:34:50</publishTime>
+    </File>
+    <File Include="bin/System.Threading.Tasks.Extensions.dll">
+      <publishTime>02/19/2020 10:05:18</publishTime>
+    </File>
+    <File Include="bin/System.ValueTuple.dll">
+      <publishTime>05/15/2018 13:29:52</publishTime>
+    </File>
     <File Include="bin/TitaniumAS.Opc.Client.dll">
       <publishTime>04/20/2016 16:43:42</publishTime>
     </File>
     <File Include="OpcService.svc">
-      <publishTime>04/27/2021 12:57:18</publishTime>
+      <publishTime>05/28/2021 12:48:26</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>04/28/2021 08:48:16</publishTime>
+      <publishTime>09/21/2021 12:47:55</publishTime>
     </File>
   </ItemGroup>
 </Project>
